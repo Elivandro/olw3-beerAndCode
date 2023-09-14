@@ -3,10 +3,11 @@
 ### Framework:
 
 - [**Laravel 10.22**](https://laravel.com/)
+- [**PestPHP**](https://pestphp.com/)
 
-### API do GATEWAY
+### GATEWAY
 
-- [**Link do gateway](https)
+- [**Mercado Pago Developers**](https://www.mercadopago.com.br/developers/)
 
 
 ### Requerimenos minimos
@@ -19,7 +20,7 @@
 
 ### Projeto
 
-Consumindo o gateway de pagamento do mercado pago em um checkout transparente(sem necessidade de login) e enviando email para informar situação do pagamento.
+Fazendo um checkout transparente e consumindo o gateway de pagamento do mercado pago e fazendo testes. Laravel 10, PestPHP, MySQL, Redis e Mailpit.
 <hr>
 
 ### Como rodar a aplicação:
@@ -77,13 +78,6 @@ DB_PASSWORD=
 QUEUE_CONNECTION=redis
 
 REDIS_HOST=redis
-
-```
-
-rode as migrações com alguns dados
-
-```
-./vendor/bin/sail artisan migrate --seed
 
 ```
 
