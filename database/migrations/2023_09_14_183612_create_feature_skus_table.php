@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('sku_id')->constrained();
             $table->foreignId('feature_id')->constrained();
+            $table->string('value');
             $table->timestamps();
             $table->softDeletes();
         });
