@@ -65,6 +65,17 @@ Para instalar as dependências do npm:
 ./vendor/bin/sail npm install
 ```
 
+crie dois usuarios um para comprador outro vendedor  enviando uma json - [documentação](https://www.mercadopago.com.br/developers/pt/docs/checkout-api/landing)
+```
+{
+	"site_id": "MLB",
+	"description": "an description"
+}
+
+endpoint:
+https://api.mercadopago.com/users/test_user
+```
+
 configure no arquivo .env
 
 ```
@@ -78,6 +89,10 @@ DB_PASSWORD=
 QUEUE_CONNECTION=redis
 
 REDIS_HOST=redis
+
+MERCADO_PAGO_BUYER_EMAIL=""
+VITE_MERCADO_PAGO_PUBLIC_KEY=""
+MERCADO_PAGO_ACCESS_TOKEN=""
 
 ```
 
