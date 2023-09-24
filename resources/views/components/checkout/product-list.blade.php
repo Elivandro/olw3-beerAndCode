@@ -11,7 +11,12 @@
             </p>
         @endforeach
     </div>
-    <p class="flex-none text-base font-medium text-secondary-300">
-        R$ {{ $price }}
-    </p>
+    <div class="flex flex-col">
+        <p class="flex-none text-base font-medium text-secondary-300">
+            @money($price)
+        </p>
+        <p class="text-right text-white">
+            x {{ $quantity }}
+        </p>
+    </div>
 </li>
