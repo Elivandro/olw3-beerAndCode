@@ -15,7 +15,7 @@ enum OrderStatusEnum: int
     {
         return match($this)
         {
-            self::CART => 'Criado',
+            self::CART => 'Carrinho',
             self::PENDING => 'Pendente',
             self::PAID => 'Pago',
             self::CANCELED => 'Cancelado',
@@ -35,5 +35,25 @@ enum OrderStatusEnum: int
                 self::REJECTED => 'Não aprovado',
                 default => 'Sem status',
             };
+    }
+
+    public static function parse($status)
+    {
+        switch($status){
+            case 'pending':
+                return self::PENDING;
+
+            case 'approved':
+                return self::PAID;
+
+            case 'rejected':
+                return self::REJECTED;
+            
+            case 'canceled':
+                return self::CANCELED;
+
+            default:
+                return self::CANCELED;
+        }
     }
 }
