@@ -26,13 +26,13 @@ class AddressForm extends Form
     #[Rule('required|string|max:255')]
     public $number = "";
 
-    #[Rule('nullable|string|max255')]
+    #[Rule('nullable|string|max:255')]
     public $complement = "";
 
     public function findAddress()
     {
         $zipcode = preg_replace('/[^0-9]/im', '', $this->zipcode);
-        $url = "https://viacep.com.br/ws/{$this->zipcode}/json/";
+        $url = "https://viacep.com.br/ws/{$zipcode}/json/";
 
         $address = Http::get($url)->object();
         

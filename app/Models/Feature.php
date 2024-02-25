@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Feature extends Model
@@ -13,11 +12,6 @@ class Feature extends Model
 
     protected $fillable = [
         'name',
-        'unit'
+        'unit',
     ];
-
-    public function feature_sku(): BelongsToMany
-    {
-        return $this->belongsToMany(Feature_sku::class);
-    }
 }

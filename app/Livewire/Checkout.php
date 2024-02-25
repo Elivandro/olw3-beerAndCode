@@ -17,7 +17,7 @@ use Livewire\Component;
 class Checkout extends Component
 {
     public array $cart = [];
-    public int $step = CheckoutStepsEnum::PAYMENT->value;
+    public int $step = CheckoutStepsEnum::INFORMATION->value;
     public int|null $method = null;
     public UserForm $user;
     public AddressForm $address;
@@ -25,6 +25,7 @@ class Checkout extends Component
     public function mount(CheckoutService $checkoutService)
     {
         $this->cart = $checkoutService->loadCart();
+        $this->user->email = config('payment.mercadopago.buyer_email');
     }
 
     public function findAddress()
@@ -53,7 +54,6 @@ class Checkout extends Component
         } catch (\Exception $e) {
             $this->addError('payment', $e->getMessage());
         }
-
     }
 
     public function pixOrBankSlipPayment(
@@ -90,12 +90,10 @@ class Checkout extends Component
         $this->redirect($url);
     }
 
-
     public function submitInformationStep()
     {
         $this->user->validate();
         $this->address->validate();
-
         $this->step = CheckoutStepsEnum::SHIPPING->value;
     }
 

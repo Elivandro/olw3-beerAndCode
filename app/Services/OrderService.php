@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
-use App\Models\Order;
 use App\Enums\OrderStatusEnum;
 use App\Enums\PaymentMethodEnum;
 use App\Enums\PaymentStatusEnum;
+use App\Models\Order;
+use Illuminate\Support\Str;
 
 class OrderService
 {
@@ -16,22 +17,22 @@ class OrderService
         $order->status = OrderStatusEnum::parse($payment->status);
         $order->save();
 
-        $order->payments->create([
+        $order->payments()->create([
             'external_id' => $payment->id,
             'method' => PaymentMethodEnum::parse($payment->payment_type_id),
             'status' => PaymentStatusEnum::parse($payment->status),
             'installments' => $payment->installments,
             'approved_at' => $payment->date_approved ?? null,
-            'qr_code_64' => $payment?->point_of_interaction?->transaction_data?->qr_code_64 ?? null,
+            'qr_code_64' => $payment?->point_of_interaction?->transaction_data?->qr_code_base64 ?? null,
             'qr_code' => $payment?->point_of_interaction?->transaction_data?->qr_code ?? null,
-            'ticket_url' => $payment?->point_of_interaction?->transaction_data?->ticket_url ?? $payment->point_of_interaction?->external_url,
+            'ticket_url' => $payment?->point_of_interaction?->transaction_data?->ticket_url ?? $payment?->transaction_details?->external_resource_url,
         ]);
 
-        $order->shipping->create([
+        $order->shippings()->create([
             'address' => $address['address'],
             'number' => $address['number'],
             'complement' => $address['complement'],
-            'distric' => $address['district'],
+            'district' => $address['district'],
             'city' => $address['city'],
             'state' => $address['state'],
             'zipcode' => $address['zipcode'],

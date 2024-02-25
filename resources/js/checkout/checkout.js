@@ -14,21 +14,21 @@ export default () => ({
                     id: "form-checkout__cardNumber",
                     placeholder: "Número do cartão",
                     style: {
-                        color: "#ff79c5"
+                        color: '#ff79c5'
                     }
                 },
                 expirationDate: {
                     id: "form-checkout__expirationDate",
                     placeholder: "MM/YY",
                     style: {
-                        color: "#ff79c5"
+                        color: '#ff79c5'
                     }
                 },
                 securityCode: {
                     id: "form-checkout__securityCode",
                     placeholder: "Código de segurança",
                     style: {
-                        color: "#ff79c5"
+                        color: '#ff79c5'
                     }
                 },
                 cardholderName: {
@@ -38,33 +38,27 @@ export default () => ({
                 issuer: {
                     id: "form-checkout__issuer",
                     placeholder: "Banco emissor",
-
                 },
                 installments: {
                     id: "form-checkout__installments",
                     placeholder: "Parcelas",
-
                 },
                 identificationType: {
                     id: "form-checkout__identificationType",
                     placeholder: "Tipo de documento",
-
                 },
                 identificationNumber: {
                     id: "form-checkout__identificationNumber",
                     placeholder: "Número do documento",
-
                 },
                 cardholderEmail: {
                     id: "form-checkout__cardholderEmail",
-                    placeholder: "Email",
-
+                    placeholder: "E-mail",
                 },
             },
             callbacks: {
                 onFormMounted: error => {
-                    if (error) return console.warn("Form mounted handling error: ", error);
-                    console.log("form Mounted");
+                    if (error) return console.warn("Form Mounted handling error: ", error);
                 },
                 onSubmit: async event => {
                     event.preventDefault();
@@ -99,8 +93,8 @@ export default () => ({
                     cardForm.unmount();
                     document.getElementById("form-checkout__cardholderEmail").value = this.$wire.$get('user.email');
                     this.creditCardPayment();
-                }
-            }
+                },
+            },
         });
     },
 
